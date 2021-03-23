@@ -159,19 +159,22 @@ void test1()
 }
 int main(int argc, char* argv[])
 {
-    test();
-    return 0;
-    AutoSeededRandomPool prng;
-    
+    printf("Hello Croptopp\n");
+    //test();
+    //return 0;
+    AutoSeededRandomPool prng(true);
+    printf("AutoSeededRandomPool finished\n");
     /////////////////////////////////////////////////
     // Part one - generate keys
     
-    ECIES<ECP,CryptoPP::SM3>::Decryptor d0(prng, /*ASN1::secp256r1()*/ASN1::sm2p256v1());
+    ECIES<ECP>::Decryptor d0(prng, /*ASN1::secp256r1()*/ASN1::sm2p256v1());
     PrintPrivateKey(d0.GetKey());
+    printf("Decryptor finished\n");
     
 
-    ECIES<ECP,CryptoPP::SM3>::Encryptor e0(d0);
+    ECIES<ECP>::Encryptor e0(d0);
     PrintPublicKey(e0.GetKey());
+    printf("Encryptor finished\n");
     
     
     /////////////////////////////////////////////////
